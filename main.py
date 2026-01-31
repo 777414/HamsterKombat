@@ -8,7 +8,10 @@ WIDTH = 400
 HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+icon = pygame.image.load(r"imgs\logo_icon.png")
 
+pygame.display.set_icon(icon)
+pygame.display.set_caption("Hamster Kombat")
 background = pygame.Surface((WIDTH, HEIGHT))
 utils.draw_vertical_gradient(background, (0, 0, 0), (10, 10, 40))
 
