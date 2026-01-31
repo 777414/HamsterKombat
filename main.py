@@ -9,6 +9,8 @@ HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 icon = pygame.image.load(r"imgs\logo_icon.png")
+coin = pygame.image.load(r"imgs\dollar.png").convert_alpha()
+coin = pygame.transform.smoothscale(coin, (32,32))
 
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Hamster Kombat")
@@ -41,6 +43,8 @@ while running:
 
     text = font.render(f"{clicks}", True, WHITE)
     screen.blit(background, (0, 0))
+    
+    screen.blit(coin, (50, 549))
     screen.blit(text, (100, 550))
 
     pygame.display.update()
