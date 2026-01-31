@@ -1,7 +1,11 @@
 import pygame
 import utils
+import json
+from datetime import datetime
 
 pygame.init()
+with open("data\score.json") as fp:
+    score = json.load(fp)
 
 # окно
 WIDTH = 400
@@ -28,7 +32,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # счётчик кликов
-clicks = 0
+clicks = score["score"]
 CLICK_DURATION = 150
 click_time = 0
 
@@ -41,6 +45,10 @@ while running:
     clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            score["last_exit"] = datetime.now().timestamp()
+            score["score"] = clicks
+            with open("data\score.json", "w") as fp:
+                fp.write(json.dumps(score, indent=4))
             running = False
 
         # если кликнули мышкой
