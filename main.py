@@ -1,4 +1,5 @@
 import pygame
+import utils
 
 pygame.init()
 
@@ -9,6 +10,7 @@ HEIGHT = 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 background = pygame.Surface((WIDTH, HEIGHT))
+utils.draw_vertical_gradient(background, (0, 0, 0), (10, 10, 40))
 
 # цвета
 WHITE = (255, 255, 255)
@@ -32,6 +34,7 @@ while running:
             clicks += 1
 
     screen.fill(WHITE)
+    screen.blit(background, (0, 0))
 
     text = font.render(f"{clicks}", True, WHITE)
     screen.blit(background, (0, 0))
