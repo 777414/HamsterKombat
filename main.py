@@ -13,6 +13,8 @@ coin = pygame.image.load(r"imgs\dollar.png").convert_alpha()
 coin = pygame.transform.smoothscale(coin, (32,32))
 button = pygame.image.load(r"imgs\button.png").convert_alpha()
 button = pygame.transform.smoothscale(button, (400,400))
+logo_coin = pygame.image.load(r"imgs\logo_coin.png").convert_alpha()
+logo_coin = pygame.transform.smoothscale(logo_coin, (200,200))
 
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Hamster Kombat")
@@ -47,6 +49,7 @@ while running:
     screen.blit(background, (0, 0))
 
     screen.blit(button, (10, 100))
+    screen.blit(logo_coin, (110, 190))
     screen.blit(coin, (50, 549))
     screen.blit(text, (100, 550))
 
