@@ -8,6 +8,8 @@ WIDTH = 400
 HEIGHT = 600
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+clock = pygame.time.Clock()
+
 icon = pygame.image.load(r"imgs\logo_icon.png")
 coin = pygame.image.load(r"imgs\dollar.png").convert_alpha()
 coin = pygame.transform.smoothscale(coin, (32,32))
@@ -27,6 +29,8 @@ BLACK = (0, 0, 0)
 
 # счётчик кликов
 clicks = 0
+CLICK_DURATION = 150
+click_time = 0
 
 # шрифт
 font = pygame.font.Font(None, 48)
@@ -34,6 +38,7 @@ font = pygame.font.Font(None, 48)
 # игровой цикл
 running = True
 while running:
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -41,15 +46,26 @@ while running:
         # если кликнули мышкой
         if event.type == pygame.MOUSEBUTTONDOWN:
             clicks += 1
+            click_time = pygame.time.get_ticks()
+
+    pressed = pygame.time.get_ticks() - click_time < CLICK_DURATION
 
     screen.fill(WHITE)
-    screen.blit(background, (0, 0))
 
     text = font.render(f"{clicks}", True, WHITE)
     screen.blit(background, (0, 0))
 
-    screen.blit(button, (10, 100))
-    screen.blit(logo_coin, (110, 190))
+    if pressed:
+        dark_button = button.copy()
+        dark_button.fill((0, 0, 0, 60), special_flags=pygame.BLEND_RGBA_SUB)
+        screen.blit(dark_button, (10, 100 + 3))
+        dark_logo_button = logo_coin.copy()
+        dark_logo_button.fill((0, 0, 0, 60), special_flags=pygame.BLEND_RGBA_SUB)
+        screen.blit(dark_logo_button, (110, 190 + 3))
+    else:
+        screen.blit(button, (10, 100))
+        screen.blit(logo_coin, (110, 190))
+
     screen.blit(coin, (50, 549))
     screen.blit(text, (100, 550))
 
