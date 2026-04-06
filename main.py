@@ -37,6 +37,7 @@ BLACK = (0, 0, 0)
 clicks = score["score"]
 CLICK_DURATION = 150
 click_time = 0
+price_mult = score["price"]
 
 # шрифт
 font = pygame.font.Font(None, 48)
@@ -63,7 +64,12 @@ while running:
     screen.fill(WHITE)
 
     text = font.render(f"{clicks}", True, WHITE)
+    mult = font.render(f"X{score['mult']}", True, WHITE)
+    price = font.render(f"{price_mult}", True, WHITE)
     screen.blit(background, (0, 0))
+    screen.blit(text, (100, 550))
+    screen.blit(mult, (50, 50))
+    screen.blit(coin, (50,549))
 
     if pressed:
         dark_button = button.copy()
