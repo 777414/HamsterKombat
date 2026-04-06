@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --name "HamsterKombat" -i imgs\logo_icon.png main.
