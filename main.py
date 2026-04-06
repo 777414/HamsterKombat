@@ -24,6 +24,8 @@ logo_coin = pygame.image.load(r"imgs\logo_coin.png").convert_alpha()
 logo_coin = pygame.transform.smoothscale(logo_coin, (200,200))
 button_mult = pygame.image.load(r"imgs\upgrade.png") .convert_alpha()
 button_mult = pygame.transform.smoothscale(button_mult, (100,100))
+button_mult_rect = button_mult.get_rect()
+button_mult_rect.topleft = (280,15)
 
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Hamster Kombat")
@@ -51,14 +53,21 @@ while running:
         if event.type == pygame.QUIT:
             score["last_exit"] = datetime.now().timestamp()
             score["score"] = clicks
+            score["price"] = price_mult
             with open("data\score.json", "w") as fp:
                 fp.write(json.dumps(score, indent=4))
             running = False
 
         # если кликнули мышкой
         if event.type == pygame.MOUSEBUTTONDOWN:
-            clicks += 1
-            click_time = pygame.time.get_ticks()
+            if button_mult_rect.collidepoint(event.pos):
+                if clicks >= price_mult:
+                    score["mult"] += 1
+                    clicks -= price_mult
+                    price_mult *= 2
+            else:
+                clicks += 1 * score["mult"]
+                click_time = pygame.time.get_ticks()
 
     pressed = pygame.time.get_ticks() - click_time < CLICK_DURATION
 
