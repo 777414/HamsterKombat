@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 pygame.init()
-with open("data\score.json") as fp:
+with open(r"data\score.json") as fp:
     score = json.load(fp)
 
 # окно
@@ -21,6 +21,8 @@ button = pygame.image.load(r"imgs\button.png").convert_alpha()
 button = pygame.transform.smoothscale(button, (400,400))
 logo_coin = pygame.image.load(r"imgs\logo_coin.png").convert_alpha()
 logo_coin = pygame.transform.smoothscale(logo_coin, (200,200))
+button_mult = pygame.image.load(r"imgs\upgrade.png") .convert_alpha()
+button_mult = pygame.transform.smoothscale(button_mult, (100,100))
 
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Hamster Kombat")
@@ -76,6 +78,7 @@ while running:
 
     screen.blit(coin, (50, 549))
     screen.blit(text, (100, 550))
+    screen.blit(button_mult, (280,15))
 
     pygame.display.update()
 
