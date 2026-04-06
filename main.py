@@ -17,6 +17,7 @@ clock = pygame.time.Clock()
 icon = pygame.image.load(r"imgs\logo_icon.png")
 coin = pygame.image.load(r"imgs\dollar.png").convert_alpha()
 coin = pygame.transform.smoothscale(coin, (32,32))
+price_coin = pygame.transform.smoothscale(coin, (32,32))
 button = pygame.image.load(r"imgs\button.png").convert_alpha()
 button = pygame.transform.smoothscale(button, (400,400))
 logo_coin = pygame.image.load(r"imgs\logo_coin.png").convert_alpha()
@@ -82,9 +83,9 @@ while running:
         screen.blit(button, (10, 100))
         screen.blit(logo_coin, (110, 190))
 
-    screen.blit(coin, (50, 549))
-    screen.blit(text, (100, 550))
     screen.blit(button_mult, (280,15))
+    screen.blit(price, (305,105))
+    screen.blit(price_coin, (270, 105))
 
     pygame.display.update()
 
