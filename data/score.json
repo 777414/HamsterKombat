@@ -1,4 +1,6 @@
 {
     "last_exit": null,
-    "score": 0
+    "score": 0,
+    "mult": 1,
+    "price": 1000
 }
